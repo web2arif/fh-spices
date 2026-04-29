@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   FH SPICES — Design Tokens
+   Nostalgic-modern: 1960s Hyderabadi cookbook reissued by a careful studio.
+   ============================================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --color-cream: #f4ede0;          /* Page background — warm parchment */
+  --color-cream-dark: #ebe1cf;     /* Section dividers, subtle elevation */
+  --color-paper: #fbf7ee;          /* Card surfaces, lighter than cream */
+
+  /* Ink */
+  --color-ink: #1f1611;            /* Primary text — warm near-black */
+  --color-ink-soft: #4a3a2c;       /* Secondary text */
+  --color-ink-faded: #8a7561;      /* Tertiary, captions */
+
+  /* Accents */
+  --color-terracotta: #a8431e;     /* Primary accent — old recipe ink */
+  --color-terracotta-dark: #7a2f15;/* Hover states */
+  --color-turmeric: #c8932c;       /* Secondary accent — highlights */
+  --color-leaf: #4a6b3a;           /* Tertiary — for badges, naturals */
+
+  /* WhatsApp */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1ea854;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
+  --color-paper: var(--color-paper);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faded: var(--color-ink-faded);
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-dark: var(--color-terracotta-dark);
+  --color-turmeric: var(--color-turmeric);
+  --color-leaf: var(--color-leaf);
+  --color-whatsapp: var(--color-whatsapp);
+  --color-whatsapp-dark: var(--color-whatsapp-dark);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Subtle paper grain — adds the "found a recipe book in the kitchen" feel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+main, header, footer, section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Display heading defaults */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Bookplate-style wordmark */
+.wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 0.18em;
+  font-weight: 500;
+}
+
+/* Smooth scrolling for the on-page anchor jump */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hand-drawn divider used between sections */
+.rule-ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-terracotta);
+}
+
+.rule-ornament::before,
+.rule-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
 }
