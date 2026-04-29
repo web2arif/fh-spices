@@ -26,7 +26,7 @@ export default async function Home() {
               {p.variants?.map((v: any) => (
                 <span
                   key={v.id}
-                  className="text-xs bg-gray-100 px-2 py-1 rounded"
+                  className="text-xs bg-gray-100 text-gray-900 px-2 py-1 rounded"
                 >
                   {formatPackSize(v.pack_size_grams)} — {formatINR(v.price_inr)}
                   {v.spice_level && ` • ${v.spice_level}`}
